@@ -1,6 +1,4 @@
-import DashboardLayout from "../dashboard/layouts/DashboardLayout"
-import { useRouter } from "next/router"
-import React, { Fragment, Suspense, useEffect, useState } from "react"
+import React, { Fragment, Suspense, useState } from "react"
 import Head from "next/head"
 import {
   Bars3Icon,
@@ -17,6 +15,7 @@ import { Dialog, Transition } from "@headlessui/react"
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
+
 const DashboardPage = () => {
   const [page, setPage] = useState("")
   const [sidebarOpen, setSidebarOpen] = useState(false)
