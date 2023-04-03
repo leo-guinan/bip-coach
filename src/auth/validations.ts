@@ -61,3 +61,13 @@ export const AddFact = z.object({
   question: z.string(),
   answer: z.string(),
 })
+
+export const Search = z.object({
+  query: z.string(),
+})
+
+export const AddRecommendation = z.object({
+  title: z.string(),
+  url: z.string(),
+  recommendation: z.string(),
+})

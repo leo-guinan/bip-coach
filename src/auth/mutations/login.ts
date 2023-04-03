@@ -18,6 +18,23 @@ export const authenticateUser = async (rawEmail: string, rawPassword: string) =>
     await db.user.update({ where: { id: user.id }, data: { hashedPassword: improvedHash } })
   }
 
+  if (!user.userId) {
+    const backendUrl = process.env.API_URL + "/api/user/add/"
+    const results = await fetch(backendUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Api-Key ${process.env.API_KEY}`,
+      },
+      body: JSON.stringify({
+        email: email.toLowerCase().trim(),
+      }),
+    })
+    const jsonResults = await results.json()
+    const userId = jsonResults.user_id
+    await db.user.update({ where: { id: user.id }, data: { userId } })
+  }
+
   const { hashedPassword, ...rest } = user
   return rest
 }
