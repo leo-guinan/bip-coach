@@ -1,5 +1,6 @@
 import { useQuery } from "@blitzjs/rpc"
 import getSlug from "../queries/getSlug"
+import GPT4Search from "./GPT4Search"
 
 const DynamicLandingPage = ({ slug }) => {
   const [landingPage] = useQuery(getSlug, { slug })
@@ -12,6 +13,7 @@ const DynamicLandingPage = ({ slug }) => {
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">{landingPage.body}</p>
         </div>
+        <GPT4Search />
       </div>
     </>
   )
