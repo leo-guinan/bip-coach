@@ -3,7 +3,7 @@ import GPT4Search from "../core/components/GPT4Search"
 const SearchPage = () => {
   return (
     <>
-      <GPT4Search />
+      <GPT4Search slug="searchables" />
     </>
   )
 }
