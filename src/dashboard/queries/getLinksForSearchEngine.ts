@@ -28,7 +28,7 @@ export default async function getLinksForSearchEngine(input: { slug: string }, c
   const links = data.response.map((item) => {
     return {
       id: item.id,
-      name: item.name,
+      title: item.title,
       description: item.description,
       url: item.url,
       image: item.image,

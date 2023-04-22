@@ -6,6 +6,7 @@ type SearchResult = {
   title: string
   link: string
   snippet: string
+  description: string
 }
 
 type SearchEngineProps = {
@@ -20,13 +21,6 @@ const GPT4Search: React.FC<SearchEngineProps> = ({ slug }) => {
     // Execute search or API call using resultQuery
     // Example:
     // setSearchResults(API.search(resultQuery))
-    const results = [
-      {
-        title: "Google",
-        link: "https://www.google.com/",
-        description: "Google is a search engine.",
-      },
-    ]
     const raw = await searchMutation({ query: resultQuery, slug })
 
     setSearchResults(raw)
@@ -60,7 +54,8 @@ const GPT4Search: React.FC<SearchEngineProps> = ({ slug }) => {
               {result.title}
             </a>
             <div className="text-green-dark">{result.link}</div>
-            <p>{result.snippet}</p>
+            {result.description && <p>{result.description}</p>}
+            {result.snippet && <p>{result.snippet}</p>}
           </div>
         ))}
       </div>
