@@ -8,7 +8,11 @@ type SearchResult = {
   snippet: string
 }
 
-const GPT4Search: React.FC = () => {
+type SearchEngineProps = {
+  slug: string
+}
+
+const GPT4Search: React.FC<SearchEngineProps> = ({ slug }) => {
   const [resultQuery, setResultQuery] = useState("")
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [searchMutation] = useMutation(search)
@@ -23,7 +27,7 @@ const GPT4Search: React.FC = () => {
         description: "Google is a search engine.",
       },
     ]
-    const raw = await searchMutation({ query: resultQuery })
+    const raw = await searchMutation({ query: resultQuery, slug })
 
     setSearchResults(raw)
   }

@@ -64,10 +64,25 @@ export const AddFact = z.object({
 
 export const Search = z.object({
   query: z.string(),
+  slug: z.string(),
 })
 
 export const AddRecommendation = z.object({
   title: z.string(),
   url: z.string(),
   recommendation: z.string(),
+})
+
+export const AddSearchEngine = z.object({
+  title: z.string(),
+  description: z.string(),
+  slug: z.string(),
+})
+
+export const AddLink = z.object({
+  title: z.string(),
+  description: z.string(),
+  slug: z.string(),
+  url: z.string(),
+  image: z.string().optional(),
 })

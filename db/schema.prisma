@@ -23,7 +23,7 @@ model User {
   hashedPassword String?
   userId         Int?
   role           String   @default("USER")
-  landingPages   LandingPage[]
+  searchEngines   SearchEngine[]
 
   tokens   Token[]
   sessions Session[]
@@ -60,7 +60,7 @@ model Token {
   @@unique([hashedToken, type])
 }
 
-model LandingPage {
+model SearchEngine {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -69,6 +69,7 @@ model LandingPage {
   creator   User     @relation(fields: [creatorId], references: [id])
   creatorId Int
   slug      String   @unique
+  image     String?
 }
 
 // NOTE: It's highly recommended to use an enum for the token type

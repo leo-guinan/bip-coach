@@ -1,7 +1,7 @@
 import { resolver } from "@blitzjs/rpc"
 import { Search } from "../../auth/validations"
 
-export default resolver.pipe(resolver.zod(Search), async ({ query }, ctx) => {
+export default resolver.pipe(resolver.zod(Search), async ({ query, slug }, ctx) => {
   const podcastLookupUrl = process.env.API_URL + "/api/search/"
   const results = await fetch(podcastLookupUrl, {
     method: "POST",
@@ -11,6 +11,8 @@ export default resolver.pipe(resolver.zod(Search), async ({ query }, ctx) => {
     },
     body: JSON.stringify({
       query,
+      use_base: false,
+      search_engine: slug,
     }),
   })
 

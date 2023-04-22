@@ -11,25 +11,22 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline"
 import { Dialog, Transition } from "@headlessui/react"
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
+import SearchEngines from "../dashboard/components/SearchEngines"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
 const DashboardPage = () => {
-  const [page, setPage] = useState("")
+  const [page, setPage] = useState("Search Engines")
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigation = [
-    { name: "Podcasts", icon: MicrophoneIcon, current: !page || page === "Podcasts" },
-    { name: "Blogs", icon: UsersIcon, current: page === "Blogs" },
-    { name: "Newsletters", icon: FolderIcon, current: page === "Newsletters" },
-    { name: "Youtube Channels", icon: CalendarIcon, current: page === "Youtube Channels" },
     {
-      name: "Youtube Playlists",
-      icon: DocumentDuplicateIcon,
-      current: page === "Youtube Playlists",
+      name: "Search Engines",
+      icon: MagnifyingGlassIcon,
+      current: !page || page === "Search Engines",
     },
-    { name: "Websites", icon: ChartPieIcon, current: page === "Websites" },
   ]
   const referralLinks = [
     { id: 1, name: "Why You Recommend CYA", href: "#", initial: "Y", current: false },
@@ -276,7 +273,7 @@ const DashboardPage = () => {
 
             <main className="py-10 lg:pl-72">
               <div className="px-4 sm:px-6 lg:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+                {page === "Search Engines" && <SearchEngines />}
               </div>
             </main>
           </div>

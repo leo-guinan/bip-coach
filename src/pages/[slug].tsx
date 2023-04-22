@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import { Suspense } from "react"
-import DynamicLandingPage from "../core/components/DynamicLandingPage"
+import SearchEngine from "../core/components/SearchEngine"
 
 const LandingPage = () => {
   const router = useRouter()
@@ -9,7 +9,7 @@ const LandingPage = () => {
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
-        <DynamicLandingPage slug={slug} />
+        <SearchEngine slug={slug} />
       </Suspense>
     </div>
   )

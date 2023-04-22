@@ -5,17 +5,17 @@ interface GetSlug {
   slug: string
 }
 export default async function getSlug({ slug }: GetSlug, { session }: Ctx) {
-  const landingPage = await db.landingPage.findFirst({
+  const searchEngine = await db.searchEngine.findFirst({
     where: { slug },
   })
-  if (!landingPage)
+  if (!searchEngine)
     return {
       title: "This is a default landing page",
       body: "To get something better, find someone who can help you.",
     }
 
   return {
-    title: landingPage.title,
-    body: landingPage.body,
+    title: searchEngine.title,
+    body: searchEngine.body,
   }
 }
