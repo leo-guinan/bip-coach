@@ -1,10 +1,10 @@
 import Links from "./Links"
+import SearchEngineTabs from "./SearchEngineTabs"
 
 const ManageSearchEngine = ({ slug }) => {
   return (
     <>
-      <h1>Manage Search Engine</h1>
-      <Links slug={slug} />
+      <SearchEngineTabs slug={slug} />
     </>
   )
 }

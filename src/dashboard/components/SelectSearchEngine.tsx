@@ -1,8 +1,11 @@
 import { useQuery } from "@blitzjs/rpc"
 import getSearchEnginesForUser from "../queries/getSearchEnginesForUser"
+import { useEffect } from "react"
 
-const SelectSearchEngine = ({ adding, setAdding, setSelectedSearchEngine }) => {
-  const [searchEngines] = useQuery(getSearchEnginesForUser, {})
+const SelectSearchEngine = ({ adding, setAdding, setSelectedSearchEngine, searchEngines }) => {
+  useEffect(() => {
+    console.log(searchEngines)
+  })
   const handleSelectSearchEngine = (e) => {
     e.preventDefault()
     console.log(e.target.dataset.slug)

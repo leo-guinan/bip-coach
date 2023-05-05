@@ -2,7 +2,7 @@ import addSearchEngine from "../mutations/addSearchEngine"
 import { useMutation } from "@blitzjs/rpc"
 import { useState } from "react"
 
-const AddSearchEngine = ({ setAdding }) => {
+const AddSearchEngine = ({ setAdding, addSearchEngineQueryData, searchEngines }) => {
   const [slug, setSlug] = useState("")
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -12,6 +12,7 @@ const AddSearchEngine = ({ setAdding }) => {
     e.preventDefault()
     try {
       const searchEngine = await addSearchEngineMutation({ slug, title, description })
+      addSearchEngineQueryData([...searchEngines, searchEngine], { refetch: false })
       console.log(searchEngine)
       setAdding(false)
     } catch (err) {
@@ -31,7 +32,10 @@ const AddSearchEngine = ({ setAdding }) => {
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-4">
-                <label htmlFor="slug" className="block text-sm font-medium leading-6 text-gray-900">
+                <label
+                  htmlFor="slug"
+                  className="block text-sm font-medium leading-6 text-indigo-400"
+                >
                   Url Slug
                 </label>
                 <div className="mt-2">
@@ -55,7 +59,7 @@ const AddSearchEngine = ({ setAdding }) => {
               <div className="sm:col-span-4">
                 <label
                   htmlFor="title"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-indigo-400"
                 >
                   Title
                 </label>
@@ -77,7 +81,7 @@ const AddSearchEngine = ({ setAdding }) => {
               <div className="col-span-full">
                 <label
                   htmlFor="description"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-indigo-400"
                 >
                   Description
                 </label>
