@@ -9,6 +9,7 @@ specifiers:
   "@next/bundle-analyzer": 12.0.8
   "@next/env": 13.2.4
   "@prisma/client": 4.6.0
+  "@stripe/stripe-js": 1.52.1
   "@tailwindcss/forms": 0.5.3
   "@tailwindcss/line-clamp": 0.4.2
   "@testing-library/jest-dom": 5.16.5
@@ -35,12 +36,13 @@ specifiers:
   prettier-plugin-prisma: 4.4.0
   pretty-quick: 3.1.3
   preview-email: 3.0.7
-  prisma: 4.6.0
+  prisma: 4.6.1
   react: 18.2.0
   react-audio-voice-recorder: 1.0.5
   react-dom: 18.2.0
   react-final-form: 6.5.9
   secure-password: 4.0.0
+  stripe: 12.4.0
   tailwindcss: 3.2.7
   typescript: ^4.9.5
   vite-tsconfig-paths: 3.6.0
@@ -54,18 +56,20 @@ dependencies:
   "@headlessui/react": 1.7.13_biqbaboplfbrettd7655fr4n2y
   "@heroicons/react": 2.0.16_react@18.2.0
   "@next/env": 13.2.4
-  "@prisma/client": 4.6.0_prisma@4.6.0
+  "@prisma/client": 4.6.0_prisma@4.6.1
+  "@stripe/stripe-js": 1.52.1
   "@tailwindcss/forms": 0.5.3_tailwindcss@3.2.7
   "@tailwindcss/line-clamp": 0.4.2_tailwindcss@3.2.7
   blitz: 2.0.0-beta.23_6iarlevy7ztiojomurw2n4btfa
   final-form: 4.20.9
   next: 13.1.6_hrdbe576m4w26u2yfpqpvbxyky
-  prisma: 4.6.0
+  prisma: 4.6.1
   react: 18.2.0
-  react-audio-voice-recorder: 1.0.5_biqbaboplfbrettd7655fr4n2y
+  react-audio-voice-recorder: 1.0.5
   react-dom: 18.2.0_react@18.2.0
   react-final-form: 6.5.9_zunk57bvr2t5bgdbaxawch3xh4
   secure-password: 4.0.0
+  stripe: 12.4.0
   zod: 3.20.2
 
 devDependencies:
@@ -91,7 +95,7 @@ devDependencies:
   prettier-plugin-prisma: 4.4.0_prettier@2.8.4
   pretty-quick: 3.1.3_prettier@2.8.4
   preview-email: 3.0.7
-  tailwindcss: 3.2.7_postcss@8.4.21
+  tailwindcss: 3.2.7
   typescript: 4.9.5
   vite-tsconfig-paths: 3.6.0_vite@3.2.5
   vitest: 0.25.3_jsdom@20.0.3
@@ -3683,7 +3687,7 @@ packages:
       }
     dev: true
 
-  /@prisma/client/4.6.0_prisma@4.6.0:
+  /@prisma/client/4.6.0_prisma@4.6.1:
     resolution:
       {
         integrity: sha512-D9LaQinDxOHinRpcJTw2tjMtjhc9HTP+aF1IRd2oLldp/8TiwIfxK8x17OhBBiX4y1PzbJXXET7kS+5wB3es/w==,
@@ -3697,7 +3701,7 @@ packages:
         optional: true
     dependencies:
       "@prisma/engines-version": 4.6.0-53.2e719efb80b56a3f32d18a62489de95bb9c130e3
-      prisma: 4.6.0
+      prisma: 4.6.1
     dev: false
 
   /@prisma/engines-version/4.6.0-53.2e719efb80b56a3f32d18a62489de95bb9c130e3:
@@ -3707,10 +3711,10 @@ packages:
       }
     dev: false
 
-  /@prisma/engines/4.6.0:
+  /@prisma/engines/4.6.1:
     resolution:
       {
-        integrity: sha512-S+72PAl0zTCbIGou1uXD/McvzdtP+bjOs0LRmGZfcOQcVqR9x/0f6Z+dqpUU0zIcqHEl+0DOB8UXaTwRvssFsQ==,
+        integrity: sha512-3u2/XxvxB+Q7cMXHnKU0CpBiUK1QWqpgiBv28YDo1zOIJE3FCF8DI2vrp6vuwjGt5h0JGXDSvmSf4D4maVjJdw==,
       }
     requiresBuild: true
     dev: false
@@ -3752,6 +3756,13 @@ packages:
         integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==,
       }
     engines: { node: ">=10" }
+    dev: false
+
+  /@stripe/stripe-js/1.52.1:
+    resolution:
+      {
+        integrity: sha512-fza40OPSpGQlFxc5TZWiYC/6Lk89Sep1fLuv9ss33YS6lCAF8UZbfA1E6W+lwO4c7WRKZIZumHIEbPJfP/O9uw==,
+      }
     dev: false
 
   /@swc/core-android-arm-eabi/1.3.7:
@@ -3992,7 +4003,7 @@ packages:
       tailwindcss: ">=3.0.0 || >= 3.0.0-alpha.1"
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.7_postcss@8.4.21
+      tailwindcss: 3.2.7
     dev: false
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.7:
@@ -4003,7 +4014,7 @@ packages:
     peerDependencies:
       tailwindcss: ">=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1"
     dependencies:
-      tailwindcss: 3.2.7_postcss@8.4.21
+      tailwindcss: 3.2.7
     dev: false
 
   /@tanstack/query-core/4.26.1:
@@ -5649,7 +5660,6 @@ packages:
     dependencies:
       function-bind: 1.1.1
       get-intrinsic: 1.2.0
-    dev: true
 
   /callsites/3.1.0:
     resolution:
@@ -7556,7 +7566,7 @@ packages:
       eslint: 8.27.0
       eslint-import-resolver-node: 0.3.7
       eslint-import-resolver-typescript: 2.7.1_f2pdo5p2l4szqoutj4achemqsa
-      eslint-plugin-import: 2.27.5_t42ngvxpeblv4nkqn3cqn7ash4
+      eslint-plugin-import: 2.27.5_ffeb2upi6fdqevbaxcqptla3cm
       eslint-plugin-jsx-a11y: 6.7.1_eslint@8.27.0
       eslint-plugin-react: 7.32.2_eslint@8.27.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.27.0
@@ -7603,7 +7613,7 @@ packages:
     dependencies:
       debug: 4.3.4
       eslint: 8.27.0
-      eslint-plugin-import: 2.27.5_t42ngvxpeblv4nkqn3cqn7ash4
+      eslint-plugin-import: 2.27.5_ffeb2upi6fdqevbaxcqptla3cm
       glob: 7.2.3
       is-glob: 4.0.3
       resolve: 1.22.1
@@ -7612,7 +7622,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-module-utils/2.7.4_zqouslzccwlburtz6dnb5kz4nu:
+  /eslint-module-utils/2.7.4_xfr7wu6uzugc7aco7eslf4pi2m:
     resolution:
       {
         integrity: sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==,
@@ -7636,15 +7646,16 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      "@typescript-eslint/parser": 5.56.0_qaufaj7tqs2aha52ol5f74v4z4
+      "@typescript-eslint/parser": 5.54.1_qaufaj7tqs2aha52ol5f74v4z4
       debug: 3.2.7
       eslint: 8.27.0
       eslint-import-resolver-node: 0.3.7
+      eslint-import-resolver-typescript: 2.7.1_f2pdo5p2l4szqoutj4achemqsa
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /eslint-plugin-import/2.27.5_t42ngvxpeblv4nkqn3cqn7ash4:
+  /eslint-plugin-import/2.27.5_ffeb2upi6fdqevbaxcqptla3cm:
     resolution:
       {
         integrity: sha512-LmEt3GVofgiGuiE+ORpnvP+kAm3h6MLZJ4Q5HCyHADofsb4VzXFsRiWj3c0OFiV+3DWFh0qg3v9gcPlfc3zRow==,
@@ -7657,7 +7668,7 @@ packages:
       "@typescript-eslint/parser":
         optional: true
     dependencies:
-      "@typescript-eslint/parser": 5.56.0_qaufaj7tqs2aha52ol5f74v4z4
+      "@typescript-eslint/parser": 5.54.1_qaufaj7tqs2aha52ol5f74v4z4
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1
@@ -7665,7 +7676,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.27.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.7.4_zqouslzccwlburtz6dnb5kz4nu
+      eslint-module-utils: 2.7.4_xfr7wu6uzugc7aco7eslf4pi2m
       has: 1.0.3
       is-core-module: 2.11.0
       is-glob: 4.0.3
@@ -10996,7 +11007,6 @@ packages:
       {
         integrity: sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==,
       }
-    dev: true
 
   /object-is/1.1.5:
     resolution:
@@ -11757,16 +11767,16 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /prisma/4.6.0:
+  /prisma/4.6.1:
     resolution:
       {
-        integrity: sha512-TAnObUMGCM9NLt9nsRs1WWYQGPKsJOK8bN/7gSAnBcYIxMCFFDe+XtFYJbyTzsJZ/i+0rH4zg8au3m7HX354LA==,
+        integrity: sha512-BR4itMCuzrDV4tn3e2TF+nh1zIX/RVU0isKtKoN28ADeoJ9nYaMhiuRRkFd2TZN8+l/XfYzoRKyHzUFXLQhmBQ==,
       }
     engines: { node: ">=14.17" }
     hasBin: true
     requiresBuild: true
     dependencies:
-      "@prisma/engines": 4.6.0
+      "@prisma/engines": 4.6.1
     dev: false
 
   /process-nextick-args/2.0.1:
@@ -11981,6 +11991,16 @@ packages:
     engines: { node: ">=6" }
     dev: true
 
+  /qs/6.11.1:
+    resolution:
+      {
+        integrity: sha512-0wsrzgTz/kAVIeuxSjnpGC56rzYtr6JT/2BwEvMaPhFIoYa1aGO8LbzuU1R0uUYQkLpWBTOj0l/CLAJB64J6nQ==,
+      }
+    engines: { node: ">=0.6" }
+    dependencies:
+      side-channel: 1.0.4
+    dev: false
+
   /querystring/0.2.0:
     resolution:
       {
@@ -12010,14 +12030,11 @@ packages:
       }
     engines: { node: ">=10" }
 
-  /react-audio-voice-recorder/1.0.5_biqbaboplfbrettd7655fr4n2y:
+  /react-audio-voice-recorder/1.0.5:
     resolution:
       {
         integrity: sha512-JO4XKZnrgJ29pO6E4/jgbOqfXM7bsqi3tYy9xTmkaID8HHdZ991cWyrmLiUNcNC6kAXoZ+jn+Q5gC9yrFV/4YA==,
       }
-    peerDependencies:
-      react: ">=16.2.0"
-      react-dom: ">=16.2.0"
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -12718,7 +12735,6 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
       object-inspect: 1.12.3
-    dev: true
 
   /signal-exit/3.0.7:
     resolution:
@@ -13152,6 +13168,17 @@ packages:
       acorn: 8.8.2
     dev: true
 
+  /stripe/12.4.0:
+    resolution:
+      {
+        integrity: sha512-QjZRzKi3wf8TsuJf/fd6/ejfPgwNptDIzFogRWaRzP3oMJnSD73I2YxR0Eje5zfrU8FmddYWZYawoUejqN+o1w==,
+      }
+    engines: { node: ">=12.*" }
+    dependencies:
+      "@types/node": 18.11.9
+      qs: 6.11.1
+    dev: false
+
   /styled-jsx/5.1.1_ogvc6ewgr3qq5z6tmbtquhqyui:
     resolution:
       {
@@ -13241,15 +13268,13 @@ packages:
       }
     dev: true
 
-  /tailwindcss/3.2.7_postcss@8.4.21:
+  /tailwindcss/3.2.7:
     resolution:
       {
         integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==,
       }
     engines: { node: ">=12.13.0" }
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3

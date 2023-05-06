@@ -3,6 +3,7 @@ import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import { Role } from "types"
 import { Signup } from "../validations"
+import { stripe } from "../../../integrations/stripe"
 
 export default resolver.pipe(resolver.zod(Signup), async ({ email, password }, ctx) => {
   const backendUrl = process.env.API_URL + "/api/user/add/"
@@ -26,6 +27,30 @@ export default resolver.pipe(resolver.zod(Signup), async ({ email, password }, c
     select: { id: true, name: true, email: true, role: true },
   })
 
-  await ctx.session.$create({ userId: user.id, role: user.role as Role })
+  const customerData: { metadata: { appUserId: number }; email: string } = {
+    metadata: {
+      appUserId: user.id,
+    },
+    email: user.email,
+  }
+  const customer = await stripe.customers.create(customerData)
+  const organization = await db.organization.create({
+    data: {
+      name: "",
+      stripeCustomerId: customer.id,
+      memberships: {
+        create: {
+          role: "OWNER",
+          user: {
+            connect: {
+              id: user.id,
+            },
+          },
+        },
+      },
+    },
+  })
+
+  await ctx.session.$create({ userId: user.id, role: user.role as Role, orgId: organization.id })
   return user
 })

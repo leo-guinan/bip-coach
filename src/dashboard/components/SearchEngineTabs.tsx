@@ -7,10 +7,6 @@ let tabs = [
   { name: "Searches", href: "#", current: false },
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ")
-}
-
 const SearchEngineTabs = ({ slug }) => {
   const [currentTab, setCurrentTab] = useState(tabs?.find((tab) => tab.current)?.name)
 

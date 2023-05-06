@@ -13,6 +13,7 @@ import {
 import { Dialog, Transition } from "@headlessui/react"
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
 import SearchEngines from "../dashboard/components/SearchEngines"
+import AccountData from "../account/components/AccountData"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
@@ -26,6 +27,11 @@ const DashboardPage = () => {
       name: "Search Engines",
       icon: MagnifyingGlassIcon,
       current: !page || page === "Search Engines",
+    },
+    {
+      name: "Account",
+      icon: UsersIcon,
+      current: page === "Account",
     },
   ]
   const referralLinks = [
@@ -266,6 +272,7 @@ const DashboardPage = () => {
             <main className="py-10 lg:pl-72">
               <div className="px-4 sm:px-6 lg:px-8">
                 {page === "Search Engines" && <SearchEngines />}
+                {page === "Account" && <AccountData />}
               </div>
             </main>
           </div>

@@ -86,3 +86,8 @@ export const AddLink = z.object({
   url: z.string(),
   image: z.string().optional(),
 })
+
+export const CreateCheckoutSession = z.object({
+  tierId: z.string(),
+  period: z.enum(["monthly", "annual"]).optional(),
+})

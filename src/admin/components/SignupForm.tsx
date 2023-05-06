@@ -17,20 +17,28 @@ import { useMutation } from "@blitzjs/rpc"
 import signup from "../../auth/mutations/signup"
 import { useState } from "react"
 import { useRouter } from "next/router"
+import { formatZodError, recursiveFormatZodErrors } from "blitz"
+import { ZodIssue } from "zod"
 
 const SignupForm = () => {
   const [signupMutation] = useMutation(signup)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
+  const [errors, setErrors] = useState<string[]>([])
   const router = useRouter()
   const handleSignup = async (e) => {
     e.preventDefault()
     try {
       await signupMutation({ email, password })
-      await router.push("/admin")
-    } catch (error: any) {
-      setError(error.toString())
+      await router.push("/dashboard")
+    } catch (e) {
+      const parsedMessage: ZodIssue[] = JSON.parse(e.message)
+      const collectedMessages: string[] = []
+      for (const message of parsedMessage) {
+        collectedMessages.push(`${message.path.join(".")}: ${message.message}`)
+      }
+      // setError(e.message)
+      setErrors(collectedMessages)
     }
   }
   return (
@@ -84,7 +92,14 @@ const SignupForm = () => {
                 />
               </div>
             </div>
-            <div>{error && <div className="text-red-500">{error}</div>}</div>
+            <div>
+              {errors &&
+                errors.map((error, i) => (
+                  <div key={"error_" + i} className="text-red-500">
+                    {error}
+                  </div>
+                ))}
+            </div>
 
             <div className="flex items-center justify-between">
               <div className="flex items-center">

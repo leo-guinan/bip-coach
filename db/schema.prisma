@@ -9,7 +9,6 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
   binaryTargets = ["native"]
-
 }
 
 // --------------------------------------
@@ -23,10 +22,40 @@ model User {
   hashedPassword String?
   userId         Int?
   role           String   @default("USER")
+  globalRole     GlobalRole @default(CUSTOMER)
   searchEngines   SearchEngine[]
-
+  memberships       Membership[]
   tokens   Token[]
   sessions Session[]
+}
+
+model Membership {
+  id             Int            @id @default(autoincrement())
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  role           MembershipRole @default(USER)
+  organization   Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  organizationId Int
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         Int
+  // When the user joins, we will clear out the name and email and set the user.
+  invitedName    String?
+  invitedEmail   String?
+  @@unique([organizationId, invitedEmail])
+}
+
+model Organization {
+  id                 Int              @id @default(autoincrement())
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  name               String?
+  stripeCustomerId   String?          @unique
+  subscriptionStatus String?          @default("incomplete")
+  subscriptionId     String?
+  memberships        Membership[]
+  price              Price?           @relation(fields: [priceId], references: [id])
+  priceId            Int?
+  level              Level            @default(FREE)
 }
 
 model Session {
@@ -60,6 +89,17 @@ model Token {
   @@unique([hashedToken, type])
 }
 
+enum MembershipRole {
+  OWNER
+  ADMIN
+  USER
+}
+
+enum GlobalRole {
+  SUPERADMIN
+  CUSTOMER
+}
+
 model SearchEngine {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -78,3 +118,42 @@ model SearchEngine {
 enum TokenType {
   RESET_PASSWORD
 }
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum Level {
+  FREE
+  PRO
+  LIFER
+}
+
+
+model Product {
+  id       Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  stripeId String
+  name     String
+  metadata String
+}
+
+model Price {
+  id       Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  stripeId String    @unique
+  currency String
+  unitAmount Int
+  interval String
+  intervalCount Int
+  metadata String
+  active Boolean
+  type String
+  nickname String
+  trialPeriodDays Int
+  organizations Organization[]
+}
+
