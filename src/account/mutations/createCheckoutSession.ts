@@ -77,8 +77,8 @@ export default resolver.pipe(
                 appUserId: user.id,
               },
             },
-            success_url: `${process.env.BASE_URL}/account`,
-            cancel_url: `${process.env.BASE_URL}/account`,
+            success_url: `${process.env.BASE_URL}/dashboard?page=account`,
+            cancel_url: `${process.env.BASE_URL}/dashboard?page=account`,
           })
 
     return session.id
