@@ -92,14 +92,15 @@ const Pricing = () => {
         <div className="mx-auto max-w-4xl">
           <h2 className="text-base font-semibold leading-7 text-indigo-400">Pricing</h2>
           <p className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            The right price for you, <br className="hidden sm:inline lg:hidden" />
-            whoever you are
+            Lifetime deal available <br className="hidden sm:inline lg:hidden" />
+            for a limited time.
           </p>
         </div>
         <div className="relative mt-6">
           <p className="mx-auto max-w-2xl text-lg leading-8 text-white/60">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos
-            odit doloribus molestiae voluptatum.
+            Sign up for a paid account to build as many search engines as you need and support as
+            many queries as you need. See what&apos;s being searched and what links are being
+            clicked.
           </p>
           <svg
             viewBox="0 0 1208 1024"
