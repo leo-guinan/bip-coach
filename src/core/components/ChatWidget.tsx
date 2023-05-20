@@ -22,9 +22,17 @@ const ChatWidget = ({ slug }) => {
   const handleSendMessage = async () => {
     setLoading(true)
     try {
-      setChatHistory([...chatHistory, { message: message, speaker: "human" }])
+      setChatHistory([
+        ...chatHistory,
+        { message: message, speaker: "human" },
+        { message: "....", speaker: "AI" },
+      ])
       const response = await sendMessageMutation({ slug, message, history: chatHistory })
-      setChatHistory([...chatHistory, { message: response.message, speaker: "AI" }])
+      setChatHistory([
+        ...chatHistory,
+        { message: message, speaker: "human" },
+        { message: response.message, speaker: "AI" },
+      ])
       setMessage("")
     } catch (error) {
       console.error(error)
