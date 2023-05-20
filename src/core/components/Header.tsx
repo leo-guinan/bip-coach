@@ -1,6 +1,4 @@
-import { MagnifyingGlassIcon, MicrophoneIcon } from "@heroicons/react/24/solid"
-import Search from "./Search"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid"
 import { Dialog } from "@headlessui/react"
 import { useCurrentUser } from "../../users/hooks/useCurrentUser"

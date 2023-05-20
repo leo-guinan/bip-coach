@@ -41,15 +41,6 @@ export const ChangePassword = z.object({
   newPassword: password,
 })
 
-export const ConversationEntry = z.object({
-  user: z.string(),
-  bot: z.string(),
-})
-export const SendMessage = z.object({
-  message: z.string(),
-  conversation: z.array(ConversationEntry),
-})
-
 export const AddPodcastRecommendation = z.object({
   name: z.string(),
   description: z.string(),
@@ -90,4 +81,15 @@ export const AddLink = z.object({
 export const CreateCheckoutSession = z.object({
   tierId: z.string(),
   period: z.enum(["monthly", "annual"]).optional(),
+})
+
+export const SendMessage = z.object({
+  message: z.string(),
+  slug: z.string(),
+  history: z.array(
+    z.object({
+      message: z.string(),
+      speaker: z.string(),
+    })
+  ),
 })

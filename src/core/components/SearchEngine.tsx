@@ -1,6 +1,8 @@
 import { useQuery } from "@blitzjs/rpc"
 import getSlug from "../queries/getSlug"
 import GPT4Search from "./GPT4Search"
+import React from "react"
+import ChatWidget from "./ChatWidget"
 
 const SearchEngine = ({ slug }) => {
   const [searchEngine] = useQuery(getSlug, { slug })
@@ -14,6 +16,7 @@ const SearchEngine = ({ slug }) => {
           <p className="mt-6 text-lg leading-8 text-gray-600">{searchEngine.body}</p>
         </div>
         <GPT4Search slug={slug} />
+        <ChatWidget slug={slug} />
       </div>
     </>
   )
