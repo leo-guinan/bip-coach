@@ -1,10 +1,10 @@
-import WhoSentYou from "./WhoSentYou"
+import WhatAreYouLookingFor from "./WhatAreYouLookingFor"
 import React from "react"
 
 const Router = () => {
   return (
     <>
-      <WhoSentYou />
+      <WhatAreYouLookingFor />
     </>
   )
 }
