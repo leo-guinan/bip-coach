@@ -23,7 +23,6 @@ model User {
   userId         Int?
   role           String   @default("USER")
   globalRole     GlobalRole @default(CUSTOMER)
-  searchEngines   SearchEngine[]
   memberships       Membership[]
   tokens   Token[]
   sessions Session[]
@@ -100,18 +99,6 @@ enum GlobalRole {
   CUSTOMER
 }
 
-model SearchEngine {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  body      String
-  creator   User     @relation(fields: [creatorId], references: [id])
-  creatorId Int
-  slug      String   @unique
-  image     String?
-}
-
 // NOTE: It's highly recommended to use an enum for the token type
 //       but enums only work in Postgres.
 //       See: https://blitzjs.com/docs/database-overview#switch-to-postgre-sql
@@ -128,16 +115,6 @@ enum Level {
   FREE
   PRO
   LIFER
-}
-
-
-model Product {
-  id       Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  stripeId String
-  name     String
-  metadata String
 }
 
 model Price {
