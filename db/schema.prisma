@@ -20,7 +20,6 @@ model User {
   name           String?
   email          String   @unique
   hashedPassword String?
-  userId         Int?
   role           String   @default("USER")
   globalRole     GlobalRole @default(CUSTOMER)
   memberships       Membership[]
