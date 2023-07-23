@@ -1,6 +1,4 @@
 import React, { Suspense, useEffect } from "react"
-import PodcastRecommendations from "./PodcastRecommendations"
-import Facts from "./Facts"
 import { useCurrentUser } from "../../users/hooks/useCurrentUser"
 import AddRecommendation from "./AddRecommendation"
 
