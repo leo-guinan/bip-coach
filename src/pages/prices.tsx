@@ -1,6 +1,5 @@
 import Pricing from "../account/components/Pricing"
 import React, { Suspense } from "react"
-import Chat from "../core/components/Router"
 import Layout from "../core/layouts/Layout"
 
 const Prices = () => {
