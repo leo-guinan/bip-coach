@@ -1,18 +1,7 @@
 import React, { Fragment, Suspense, useState } from "react"
 import Head from "next/head"
-import {
-  Bars3Icon,
-  CalendarIcon,
-  ChartPieIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  MicrophoneIcon,
-  UsersIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { Dialog, Transition } from "@headlessui/react"
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
-import SearchEngines from "../dashboard/components/SearchEngines"
 import AccountData from "../account/components/AccountData"
 
 function classNames(...classes) {
