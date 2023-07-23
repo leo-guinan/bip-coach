@@ -3,32 +3,43 @@ import { SendMessage } from "../../auth/validations"
 import { Ctx } from "blitz"
 import db from "../../../db"
 
-export default resolver.pipe(
-  resolver.zod(SendMessage),
-  async ({ slug, message, history }, ctx: Ctx) => {
-    const searchEngine = await db.searchEngine.findFirst({
-      where: { slug },
-    })
-    if (!searchEngine) return { message: "I don't know how to respond to that." }
+export default resolver.pipe(resolver.zod(SendMessage), async ({ message }, ctx: Ctx) => {
+  const { userId } = ctx.session
 
-    const backendUrl = process.env.API_URL + "/api/search/chat/"
-
-    const results = await fetch(backendUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Api-Key ${process.env.API_KEY}`,
-      },
-      body: JSON.stringify({
-        search_engine: slug,
-        message,
-        history,
-      }),
-    })
-    const jsonResults = await results.json()
-
-    return {
-      message: jsonResults.response,
-    }
+  if (!userId) {
+    throw new Error("No user ID")
   }
-)
+
+  const user = await db.user.findFirst({
+    where: {
+      id: userId,
+    },
+    include: {
+      memberships: {
+        include: {
+          organization: true,
+        },
+      },
+    },
+  })
+
+  if (!user) {
+    throw new Error("No user")
+  }
+
+  const backendUrl = process.env.API_URL + "/api/coach/chat/"
+
+  const results = await fetch(backendUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Api-Key ${process.env.API_KEY}`,
+    },
+    body: JSON.stringify({
+      message,
+      session_id: user.memberships[0]?.organization.currentSession,
+      user_id: user.userId,
+    }),
+  })
+  return results.json()
+})

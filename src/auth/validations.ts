@@ -11,9 +11,22 @@ export const password = z
   .max(100)
   .transform((str) => str.trim())
 
+export const fullName = z
+  .string()
+  .min(3)
+  .max(100)
+  .transform((str) => str.trim())
+export const preferredName = z
+  .string()
+  .min(3)
+  .max(100)
+  .transform((str) => str.trim())
+
 export const Signup = z.object({
   email,
   password,
+  fullName,
+  preferredName,
 })
 
 export const Login = z.object({
@@ -85,11 +98,4 @@ export const CreateCheckoutSession = z.object({
 
 export const SendMessage = z.object({
   message: z.string(),
-  slug: z.string(),
-  history: z.array(
-    z.object({
-      message: z.string(),
-      speaker: z.string(),
-    })
-  ),
 })

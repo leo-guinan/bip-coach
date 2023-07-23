@@ -7,24 +7,25 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native"]
 }
 
 // --------------------------------------
 
 model User {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id             Int          @id @default(autoincrement())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
   name           String?
-  email          String   @unique
+  email          String       @unique
   hashedPassword String?
-  role           String   @default("USER")
-  globalRole     GlobalRole @default(CUSTOMER)
-  memberships       Membership[]
-  tokens   Token[]
-  sessions Session[]
+  role           String       @default("USER")
+  globalRole     GlobalRole   @default(CUSTOMER)
+  userId         Int?         @unique
+  memberships    Membership[]
+  tokens         Token[]
+  sessions       Session[]
 }
 
 model Membership {
@@ -39,21 +40,24 @@ model Membership {
   // When the user joins, we will clear out the name and email and set the user.
   invitedName    String?
   invitedEmail   String?
+
   @@unique([organizationId, invitedEmail])
 }
 
 model Organization {
-  id                 Int              @id @default(autoincrement())
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
+  id                 Int      @id @default(autoincrement())
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
   name               String?
-  stripeCustomerId   String?          @unique
-  subscriptionStatus String?          @default("incomplete")
+  currentSession     String?
+  stripeCustomerId   String?  @unique
+  subscriptionStatus String?  @default("incomplete")
   subscriptionId     String?
-  memberships        Membership[]
-  price              Price?           @relation(fields: [priceId], references: [id])
-  priceId            Int?
-  level              Level            @default(FREE)
+
+  memberships Membership[]
+  price       Price?       @relation(fields: [priceId], references: [id])
+  priceId     Int?
+  level       Level        @default(FREE)
 }
 
 model Session {
@@ -72,9 +76,9 @@ model Session {
 }
 
 model Token {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   hashedToken String
   // See note below about TokenType enum
   type        TokenType
@@ -117,19 +121,18 @@ enum Level {
 }
 
 model Price {
-  id       Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  stripeId String    @unique
-  currency String
-  unitAmount Int
-  interval String
-  intervalCount Int
-  metadata String
-  active Boolean
-  type String
-  nickname String
+  id              Int            @id @default(autoincrement())
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  stripeId        String         @unique
+  currency        String
+  unitAmount      Int
+  interval        String
+  intervalCount   Int
+  metadata        String
+  active          Boolean
+  type            String
+  nickname        String
   trialPeriodDays Int
-  organizations Organization[]
+  organizations   Organization[]
 }
-

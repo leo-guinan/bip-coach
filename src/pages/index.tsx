@@ -1,7 +1,7 @@
 import React, { Suspense } from "react"
 import Layout from "src/core/layouts/Layout"
 import { BlitzPage } from "@blitzjs/next"
-import Chat from "../core/components/Router"
+import Chat from "../core/components/Chat"
 
 const Home: BlitzPage = () => {
   return (
