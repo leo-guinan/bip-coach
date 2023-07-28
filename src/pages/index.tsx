@@ -38,7 +38,7 @@ const Home: BlitzPage = () => {
   }, [newMessage])
 
   useEffect(() => {
-    client.current = new W3CWebSocket("ws://localhost:8000/api/ws/chat/test/")
+    client.current = new W3CWebSocket("ws://api.chooseyouralgorithm.com/api/ws/chat/test/")
     if (!client.current)
       client.current.onopen = () => {
         console.log("WebSocket Client Connected")
