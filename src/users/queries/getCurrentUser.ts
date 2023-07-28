@@ -11,6 +11,7 @@ export default async function getCurrentUser(_ = null, { session }: Ctx) {
       name: true,
       email: true,
       role: true,
+      userId: true,
       memberships: {
         select: {
           organization: {

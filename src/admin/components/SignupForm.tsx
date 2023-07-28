@@ -32,7 +32,7 @@ const SignupForm = () => {
     e.preventDefault()
     try {
       await signupMutation({ email, password, fullName, preferredName })
-      await router.push("/dashboard")
+      await router.push("/")
     } catch (e) {
       const parsedMessage: ZodIssue[] = JSON.parse(e.message)
       const collectedMessages: string[] = []

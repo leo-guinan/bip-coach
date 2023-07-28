@@ -29,7 +29,7 @@ const LoginForm = () => {
     e.preventDefault()
     try {
       await loginMutation({ email, password })
-      await router.push("/dashboard")
+      await router.push("/")
     } catch (error: any) {
       setError(error.toString())
     }

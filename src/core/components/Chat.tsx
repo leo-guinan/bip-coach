@@ -3,35 +3,36 @@ import { useMutation } from "@blitzjs/rpc"
 import sendMessage from "../../chat/mutations/sendMessage"
 import ReactMarkdown from "react-markdown"
 import { useCurrentUser } from "../../users/hooks/useCurrentUser"
+import { w3cwebsocket as W3CWebSocket } from "websocket/lib/websocket"
 
-interface ChatMessage {
-  message: string
-  id: number
-  source: "human" | "bot"
-}
-
-const Chat = () => {
+const Chat = ({ client, chat, setChat }) => {
   const currentUser = useCurrentUser()
   const [message, setMessage] = useState("")
-  const [chat, setChat] = useState<ChatMessage[]>([])
 
-  const [sendMessageMutation] = useMutation(sendMessage)
+  // const [sendMessageMutation] = useMutation(sendMessage)
 
   const handleSendMessage = async (event) => {
     event.preventDefault()
-    setChat([...chat, { message, id: Math.floor(Math.random() * 1000), source: "human" }])
-    const response = await sendMessageMutation({ message })
     setChat([
       ...chat,
       { message, id: Math.floor(Math.random() * 1000), source: "human" },
-      { message: response.message, id: Math.floor(Math.random() * 1000), source: "bot" },
+      { message: "...", id: -1, source: "bot" },
     ])
+    setMessage("")
+
+    client.current.send(
+      JSON.stringify({
+        message: message,
+        user_id: currentUser?.userId,
+      })
+    )
+    // const response = await sendMessageMutation({ message })
+
     // setChat([...chat, { message, id: Math.floor(Math.random() * 1000), source: "human" }, {
     //   message: "Message Received",
     //   id: Math.floor(Math.random() * 1000),
     //   source: "bot"
     // }])
-    setMessage("")
   }
 
   return (
