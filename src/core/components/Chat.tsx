@@ -36,7 +36,7 @@ const Chat = ({ client, chat, setChat }) => {
     <div className="flex flex-col h-full bg-gray-800 ">
       {currentUser && (
         <>
-          <div className="flex flex-col w-full h-full p-5 justify-between">
+          <div className="flex flex-col w-full min-h-screen h-full p-5 justify-between">
             <div className="flex flex-col justify-end">
               {chat.map(({ message, id, source }) => (
                 <>
