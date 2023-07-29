@@ -20,6 +20,7 @@ export default async function getCurrentUser(_ = null, { session }: Ctx) {
               name: true,
               subscriptionStatus: true,
               level: true,
+              currentSession: true,
             },
           },
         },

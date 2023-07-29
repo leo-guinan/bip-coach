@@ -73,6 +73,9 @@ dependencies:
   stripe:
     specifier: 12.4.0
     version: 12.4.0
+  uuid:
+    specifier: 9.0.0
+    version: 9.0.0
   websocket:
     specifier: 1.0.34
     version: 1.0.34
@@ -14863,6 +14866,14 @@ packages:
       }
     hasBin: true
     dev: true
+
+  /uuid@9.0.0:
+    resolution:
+      {
+        integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==,
+      }
+    hasBin: true
+    dev: false
 
   /uvu@0.5.6:
     resolution:

@@ -1,8 +1,16 @@
-import React, { Suspense, useEffect, useRef, useState } from "react"
+import React, { Fragment, Suspense, useEffect, useRef, useState } from "react"
 import Layout from "src/core/layouts/Layout"
-import { BlitzPage } from "@blitzjs/next"
+import { BlitzPage, Routes } from "@blitzjs/next"
 import Chat from "../core/components/Chat"
 import { w3cwebsocket as W3CWebSocket } from "websocket"
+import { Dialog, Transition } from "@headlessui/react"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
+import AccountData from "../account/components/AccountData"
+import { v4 as uuidv4 } from "uuid"
+import { useRouter } from "next/router"
+import ChatSession from "./[...session_id]"
+import { useCurrentUser } from "../users/hooks/useCurrentUser"
+import Default from "../core/components/Default"
 
 let socket
 
@@ -17,55 +25,22 @@ interface ChatMessage {
   source: "human" | "bot"
 }
 const Home: BlitzPage = () => {
-  const client = useRef<W3CWebSocket>(null)
-  const [chat, setChat] = useState<ChatMessage[]>([
-    { message: "How can I help you?", id: 1, source: "bot" },
-  ])
-  const [newMessage, setNewMessage] = useState<Message>({ message: "", source: "human" })
+  const router = useRouter()
 
-  useEffect(() => {
-    console.log("newMessage", newMessage)
-    if (newMessage.message === "") return
-    setChat((c) => [
-      ...c.filter((value) => value.id !== -1),
-      {
-        message: newMessage.message,
-        id: Math.floor(Math.random() * 1000),
-        source: newMessage.source,
-      },
-    ])
-    setNewMessage({ message: "", source: "human" })
-  }, [newMessage])
-
-  useEffect(() => {
-    client.current = new W3CWebSocket("wss://api.chooseyouralgorithm.com/api/ws/chat/test/")
-    if (!client.current)
-      client.current.onopen = () => {
-        console.log("WebSocket Client Connected")
-      }
-
-    client.current.onmessage = (message: MessageEvent) => {
-      console.log("message", message)
-      const data = JSON.parse(message.data)
-
-      setNewMessage({ message: data.message, source: "bot" })
-    }
-
-    client.current.onclose = (event: CloseEvent) => {
-      console.log(`WebSocket closed with code ${event.code}`)
-    }
-
-    client.current.onerror = (error: ErrorEvent) => {
-      console.log(`WebSocket Error: ${error.message}`)
-    }
-  }, [])
   return (
     <Layout title="Home">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* We've used 3xl here, but feel free to try other max-widths based on your needs */}
         <div className="mx-auto max-w-3xl">
           <Suspense fallback="Loading...">
-            <Chat client={client} chat={chat} setChat={setChat} />
+            <>
+              <main className="py-10">
+                <div className="px-4 sm:px-6 lg:px-8">
+                  {/*  new chat button */}
+                  <Default />
+                </div>
+              </main>
+            </>
           </Suspense>
         </div>
       </div>

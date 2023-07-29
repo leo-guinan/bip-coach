@@ -99,3 +99,7 @@ export const CreateCheckoutSession = z.object({
 export const SendMessage = z.object({
   message: z.string(),
 })
+
+export const ChatSession = z.object({
+  sessionId: z.string(),
+})
