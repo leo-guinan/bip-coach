@@ -54,10 +54,8 @@ const ChatSession: BlitzPage = () => {
     void updateChatSessionMutation({ sessionId })
 
     const connectSocket = () => {
-      // client.current = new W3CWebSocket(`ws://localhost:8000/api/ws/chat/${sessionId}/`)
-      client.current = new W3CWebSocket(
-        `wss://api.chooseyouralgorithm.com/api/ws/chat/${sessionId}/`
-      )
+      // client.current = new W3CWebSocket(`${sessionId}/`)
+      client.current = new W3CWebSocket(`${process.env.NEXT_PUBLIC_WEBSOCKET_URL}${sessionId}/`)
 
       client.current.onopen = () => {
         console.log("WebSocket Client Connected")

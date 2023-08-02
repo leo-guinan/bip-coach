@@ -92,8 +92,7 @@ export const AddLink = z.object({
 })
 
 export const CreateCheckoutSession = z.object({
-  tierId: z.string(),
-  period: z.enum(["monthly", "annual"]).optional(),
+  priceId: z.number(),
 })
 
 export const SendMessage = z.object({

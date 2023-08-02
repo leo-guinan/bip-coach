@@ -22,5 +22,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/saas-template</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="flightcontrol@database-g55d0ty7.cez90m6mwnlv.us-east-1.rds.amazonaws.com" uuid="6af4d52b-cff0-4ff6-85be-df6a218e9a9b">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://database-g55d0ty7.cez90m6mwnlv.us-east-1.rds.amazonaws.com:5432/flightcontrol</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

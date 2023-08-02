@@ -4,7 +4,11 @@ import { BlitzLayout, Routes } from "@blitzjs/next"
 import Header from "../components/Header"
 import { Dialog, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
-import { Cog6ToothIcon, ChatBubbleLeftRightIcon } from "@heroicons/react/20/solid"
+import {
+  Cog6ToothIcon,
+  ChatBubbleLeftRightIcon,
+  CurrencyDollarIcon,
+} from "@heroicons/react/20/solid"
 import { classNames } from "../../../utils"
 import { v4 as uuidv4 } from "uuid"
 
@@ -18,6 +22,12 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
       href: `/${uuidv4()}`,
       icon: ChatBubbleLeftRightIcon,
       current: true,
+    },
+    {
+      name: "Upgrade Account",
+      href: "/prices",
+      icon: CurrencyDollarIcon,
+      current: false,
     },
   ]
   const chats = [
