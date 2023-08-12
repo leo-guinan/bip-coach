@@ -1,6 +1,5 @@
 import { useCurrentUser } from "../../users/hooks/useCurrentUser"
 import React, { useEffect } from "react"
-import { Routes } from "@blitzjs/next"
 import { useRouter } from "next/router"
 
 const Default = () => {
@@ -10,11 +9,7 @@ const Default = () => {
   useEffect(() => {
     if (!router.isReady) return
     if (currentUser && currentUser?.memberships[0]?.organization.currentSession) {
-      void router.push(
-        Routes.ChatSession({
-          session_id: [currentUser?.memberships[0].organization.currentSession],
-        })
-      )
+      void router.push(`/${currentUser.memberships[0]?.organization.currentSession}`)
     }
   }, [router])
   return (
