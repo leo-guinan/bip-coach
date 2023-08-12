@@ -1,12 +1,23 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import ReactMarkdown from "react-markdown"
 import { useCurrentUser } from "../../users/hooks/useCurrentUser"
+import { useQuery } from "@blitzjs/rpc"
+import getChat from "../../users/queries/getChat"
 
 const Chat = ({ client, chat, setChat }) => {
   const currentUser = useCurrentUser()
   const [message, setMessage] = useState("")
 
+  const [chatHistory] = useQuery(getChat, {
+    session_id: currentUser?.memberships[0]?.organization.currentSession,
+  })
+
   // const [sendMessageMutation] = useMutation(sendMessage)
+
+  useEffect(() => {
+    if (!chatHistory) return
+    setChat(chatHistory)
+  })
 
   const handleSendMessage = async (event) => {
     event.preventDefault()
