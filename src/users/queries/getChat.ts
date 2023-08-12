@@ -2,7 +2,9 @@ import { Ctx } from "blitz"
 import db from "db"
 
 export default async function getChat(
-  session_id: {
+  {
+    session_id,
+  }: {
     session_id: string | null | undefined
   },
   { session }: Ctx
