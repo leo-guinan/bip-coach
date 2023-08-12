@@ -11,6 +11,8 @@ import {
 } from "@heroicons/react/20/solid"
 import { classNames } from "../../../utils"
 import { v4 as uuidv4 } from "uuid"
+import Chats from "../components/Chats"
+import ChatsMobile from "../components/ChatsMobile"
 
 const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
   title,
@@ -126,26 +128,9 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
                               <div className="text-xs font-semibold leading-6 text-gray-400">
                                 Your Previous Chats (coming soon)
                               </div>
-                              <ul role="list" className="-mx-2 mt-2 space-y-1">
-                                {/*{chats.map((chat) => (*/}
-                                {/*  <li key={chat.name}>*/}
-                                {/*    <a*/}
-                                {/*      href={chat.href}*/}
-                                {/*      className={classNames(*/}
-                                {/*        chat.current*/}
-                                {/*          ? 'bg-gray-800 text-white'*/}
-                                {/*          : 'text-gray-400 hover:text-white hover:bg-gray-800',*/}
-                                {/*        'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'*/}
-                                {/*      )}*/}
-                                {/*    >*/}
-                                {/*      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">*/}
-                                {/*        {chat.initial}*/}
-                                {/*      </span>*/}
-                                {/*      <span className="truncate">{chat.name}</span>*/}
-                                {/*    </a>*/}
-                                {/*  </li>*/}
-                                {/*))}*/}
-                              </ul>
+                              <Suspense fallback="Loading...">
+                                <ChatsMobile />
+                              </Suspense>
                             </li>
                             <li className="mt-auto">
                               <a
@@ -209,26 +194,9 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
                     <div className="text-xs font-semibold leading-6 text-gray-400">
                       Previous Chats (coming soon)
                     </div>
-                    <ul role="list" className="-mx-2 mt-2 space-y-1">
-                      {/*{chats.map((chat) => (*/}
-                      {/*  <li key={chat.name}>*/}
-                      {/*    <a*/}
-                      {/*      href={chat.href}*/}
-                      {/*      className={classNames(*/}
-                      {/*        chat.current*/}
-                      {/*          ? 'bg-gray-800 text-white'*/}
-                      {/*          : 'text-gray-400 hover:text-white hover:bg-gray-800',*/}
-                      {/*        'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'*/}
-                      {/*      )}*/}
-                      {/*    >*/}
-                      {/*      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">*/}
-                      {/*        {chat.initial}*/}
-                      {/*      </span>*/}
-                      {/*      <span className="truncate">{chat.name}</span>*/}
-                      {/*    </a>*/}
-                      {/*  </li>*/}
-                      {/*))}*/}
-                    </ul>
+                    <Suspense fallback="Loading...">
+                      <Chats />
+                    </Suspense>
                   </li>
                   <li className="mt-auto">
                     <a
