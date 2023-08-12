@@ -126,7 +126,7 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
                             </li>
                             <li>
                               <div className="text-xs font-semibold leading-6 text-gray-400">
-                                Your Previous Chats (coming soon)
+                                Previous Chats
                               </div>
                               <Suspense fallback="Loading...">
                                 <ChatsMobile />
@@ -192,7 +192,7 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
                   </li>
                   <li>
                     <div className="text-xs font-semibold leading-6 text-gray-400">
-                      Previous Chats (coming soon)
+                      Previous Chats
                     </div>
                     <Suspense fallback="Loading...">
                       <Chats />
