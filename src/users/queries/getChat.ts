@@ -19,7 +19,7 @@ export default async function getChat(
   const backendUrl = process.env.API_URL + "/api/coach/chat/"
   console.log(backendUrl)
 
-  const response = await fetch(`${backendUrl}}`, {
+  const response = await fetch(`${backendUrl}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
