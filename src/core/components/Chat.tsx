@@ -16,8 +16,9 @@ const Chat = ({ client, chat, setChat }) => {
 
   useEffect(() => {
     if (!chatHistory) return
+    console.log(chatHistory)
     setChat(chatHistory)
-  })
+  }, [chatHistory])
 
   const handleSendMessage = async (event) => {
     event.preventDefault()
