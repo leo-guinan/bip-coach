@@ -1,6 +1,5 @@
 import { CheckIcon } from "@heroicons/react/20/solid"
 import { useState } from "react"
-import { RadioGroup } from "@headlessui/react"
 import { classNames } from "../../../utils"
 import { getStripe } from "../../../integrations/stripe-client"
 import { useMutation } from "@blitzjs/rpc"
@@ -12,7 +11,7 @@ const tiers = [
     name: "Monthly",
     id: "tier-monthly",
     href: "#",
-    price: "$5",
+    price: "$25",
     mostPopular: false,
     description: "Get the help you need while building in public",
     features: ["Unlimited chats monthly"],
@@ -23,27 +22,16 @@ const tiers = [
     name: "Annual",
     id: "tier-annual",
     href: "#",
-    price: "$25",
+    price: "$250",
     mostPopular: true,
-    description: "Get the help you need while building in public",
-    features: ["Unlimited chats monthly", "Access to private community"],
-    type: "Annually",
-    priceId: 4,
-  },
-  {
-    name: "Annual + Live Coaching Monthly (limited deal)",
-    id: "tier-coaching",
-    href: "#",
-    price: "$50",
-    mostPopular: false,
     description: "Get the help you need while building in public",
     features: [
       "Unlimited chats monthly",
       "Access to private community",
-      "monthly 30 minute live coaching session",
+      "Early access to new features",
     ],
     type: "Annually",
-    priceId: 3,
+    priceId: 4,
   },
 ]
 const Pricing = () => {
@@ -87,7 +75,7 @@ const Pricing = () => {
           Get the help you need while building in public, at a price you can afford. The best
           founders have access to great coaches. Now you can too!
         </p>
-        <div className="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div className="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           {tiers.map((tier, tierIdx) => (
             <div
               key={tier.id}
