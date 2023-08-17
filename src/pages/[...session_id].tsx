@@ -12,6 +12,7 @@ let socket
 type Message = {
   source: "human" | "bot"
   message: string
+  id: number
 }
 
 interface ChatMessage {
@@ -31,22 +32,22 @@ const ChatSession: BlitzPage = () => {
   const [chat, setChat] = useState<ChatMessage[]>([
     { message: "How can I help you?", id: 1, source: "bot" },
   ])
-  const [newMessage, setNewMessage] = useState<Message>({ message: "", source: "human" })
+  const [newMessage, setNewMessage] = useState<Message>({ message: "", source: "human", id: 0 })
 
   const [updateChatSessionMutation] = useMutation(updateChatSession)
 
   useEffect(() => {
     console.log("newMessage", newMessage)
     if (newMessage.message === "") return
+    console.log(newMessage)
     setChat((c) => [
       ...c.filter((value) => value.id !== -1),
       {
-        message: newMessage.message,
-        id: Math.floor(Math.random() * 1000),
-        source: newMessage.source,
+        ...newMessage,
       },
     ])
-    setNewMessage({ message: "", source: "human" })
+    console.log(chat)
+    setNewMessage({ message: "", source: "human", id: 0 })
   }, [newMessage])
 
   useEffect(() => {
@@ -64,7 +65,7 @@ const ChatSession: BlitzPage = () => {
       client.current.onmessage = (message: MessageEvent) => {
         console.log("message", message)
         const data = JSON.parse(message.data)
-        setNewMessage({ message: data.message, source: "bot" })
+        setNewMessage({ message: data.message, source: "bot", id: data.id })
       }
 
       client.current.onclose = (event: CloseEvent) => {
