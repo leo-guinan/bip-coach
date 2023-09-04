@@ -11,7 +11,7 @@ const Chats = () => {
     <ul role="list" className="-mx-2 mt-2 space-y-1">
       {chats &&
         chats.map((chat) => (
-          <li key={chat.name}>
+          <li key={chat.session_id}>
             <a
               href={`${chat.session_id}`}
               className={classNames(

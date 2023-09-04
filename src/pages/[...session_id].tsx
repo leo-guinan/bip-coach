@@ -28,30 +28,25 @@ const ChatSession: BlitzPage = () => {
   const sessionId = router?.query?.session_id
     ? (router.query.session_id[0] as unknown as string)
     : ""
-  console.log(sessionId)
-  const [chat, setChat] = useState<ChatMessage[]>([
-    { message: "How can I help you?", id: 1, source: "bot" },
-  ])
+  const [chat, setChat] = useState<ChatMessage[]>([])
   const [newMessage, setNewMessage] = useState<Message>({ message: "", source: "human", id: 0 })
 
   const [updateChatSessionMutation] = useMutation(updateChatSession)
 
   useEffect(() => {
-    console.log("newMessage", newMessage)
     if (newMessage.message === "") return
-    console.log(newMessage)
     setChat((c) => [
       ...c.filter((value) => value.id !== -1),
       {
         ...newMessage,
       },
     ])
-    console.log(chat)
     setNewMessage({ message: "", source: "human", id: 0 })
   }, [newMessage])
 
   useEffect(() => {
     if (!router.isReady) return
+    setChat([])
     void updateChatSessionMutation({ sessionId })
 
     const connectSocket = () => {
@@ -60,6 +55,7 @@ const ChatSession: BlitzPage = () => {
 
       client.current.onopen = () => {
         console.log("WebSocket Client Connected")
+        setChat([])
       }
 
       client.current.onmessage = (message: MessageEvent) => {
@@ -70,6 +66,7 @@ const ChatSession: BlitzPage = () => {
 
       client.current.onclose = (event: CloseEvent) => {
         console.log(`WebSocket closed with code ${event.code}`)
+        setChat([])
         setTimeout(() => {
           console.log("Reconnecting...")
           connectSocket()
@@ -91,7 +88,7 @@ const ChatSession: BlitzPage = () => {
         {/* We've used 3xl here, but feel free to try other max-widths based on your needs */}
         <div className="mx-auto max-w-3xl">
           <Suspense fallback="Loading...">
-            <Chat client={client} chat={chat} setChat={setChat} />
+            <Chat client={client} chat={chat} setChat={setChat} sessionId={sessionId} />
           </Suspense>
         </div>
       </div>

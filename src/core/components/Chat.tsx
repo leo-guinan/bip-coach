@@ -4,12 +4,24 @@ import { useCurrentUser } from "../../users/hooks/useCurrentUser"
 import { useQuery } from "@blitzjs/rpc"
 import getChat from "../../users/queries/getChat"
 
-const Chat = ({ client, chat, setChat }) => {
+const Chat = ({
+  client,
+  chat,
+  setChat,
+  chatType,
+  sessionId,
+}: {
+  client: any
+  chat: any
+  setChat: any
+  chatType?: any
+  sessionId: string
+}) => {
   const currentUser = useCurrentUser()
   const [message, setMessage] = useState("")
 
   const [chatHistory] = useQuery(getChat, {
-    session_id: currentUser?.memberships[0]?.organization.currentSession,
+    session_id: sessionId,
   })
 
   // const [sendMessageMutation] = useMutation(sendMessage)
@@ -33,6 +45,7 @@ const Chat = ({ client, chat, setChat }) => {
       JSON.stringify({
         message: message,
         user_id: currentUser?.userId,
+        chat_type: chatType ?? "default",
       })
     )
     // const response = await sendMessageMutation({ message })

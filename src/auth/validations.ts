@@ -102,3 +102,7 @@ export const SendMessage = z.object({
 export const ChatSession = z.object({
   sessionId: z.string(),
 })
+
+export const StartSession = z.object({
+  sessionType: z.enum(["daily_great", "daily_bad", "daily_ok"]),
+})
