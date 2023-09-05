@@ -106,3 +106,9 @@ export const ChatSession = z.object({
 export const StartSession = z.object({
   sessionType: z.enum(["daily_great", "daily_bad", "daily_ok"]),
 })
+
+export const SetPreferences = z.object({
+  preferences: z.object({
+    daily_checkin: z.boolean(),
+  }),
+})

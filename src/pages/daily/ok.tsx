@@ -9,20 +9,6 @@ import updateChatSession from "../../chat/mutations/updateChatSession"
 import { v4 as uuidv4 } from "uuid"
 import StartSession from "../../chat/components/StartSession"
 
-let socket
-
-type Message = {
-  source: "human" | "bot"
-  message: string
-  id: number
-}
-
-interface ChatMessage {
-  message: string
-  id: number
-  source: "human" | "bot"
-}
-
 const DailyOkPage: BlitzPage = () => {
   return (
     <Layout title="Home">
@@ -38,4 +24,7 @@ const DailyOkPage: BlitzPage = () => {
   )
 }
 
+DailyOkPage.authenticate = {
+  redirectTo: "/login",
+}
 export default DailyOkPage

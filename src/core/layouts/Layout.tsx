@@ -47,12 +47,12 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
   return (
     <>
       <Head>
-        <title>{title || "Choose Your Algorithm"}</title>
+        <title>{title || "BuildInPublic.coach"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Suspense fallback="Loading...">
-        <div className="bg-gray-800">
+        <div className="bg-gray-800 h-screen">
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
               <Transition.Child

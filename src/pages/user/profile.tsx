@@ -1,16 +1,16 @@
-import React, { Suspense } from "react"
-import Layout from "src/core/layouts/Layout"
 import { BlitzPage } from "@blitzjs/next"
-import StartSession from "../../chat/components/StartSession"
+import Layout from "src/core/layouts/Layout"
+import { Suspense } from "react"
+import Profile from "../../users/components/Profile"
 
-const DailyGreatPage: BlitzPage = () => {
+const ProfilePage: BlitzPage = () => {
   return (
-    <Layout title="Home">
+    <Layout title="User Profile">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* We've used 3xl here, but feel free to try other max-widths based on your needs */}
         <div className="mx-auto max-w-3xl">
           <Suspense fallback="Loading...">
-            <StartSession chatType="daily_great" />
+            <Profile />
           </Suspense>
         </div>
       </div>
@@ -18,7 +18,7 @@ const DailyGreatPage: BlitzPage = () => {
   )
 }
 
-DailyGreatPage.authenticate = {
+ProfilePage.authenticate = {
   redirectTo: "/login",
 }
-export default DailyGreatPage
+export default ProfilePage

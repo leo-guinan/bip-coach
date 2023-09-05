@@ -96,4 +96,7 @@ const ChatSession: BlitzPage = () => {
   )
 }
 
+ChatSession.authenticate = {
+  redirectTo: "/login",
+}
 export default ChatSession
